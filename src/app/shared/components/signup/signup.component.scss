@@ -1,0 +1,24 @@
+.createBtn {
+  width: 100%;
+}
+
+.buttonLogin.a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  margin: 40px;
+}
+
+.imgcontainer{
+    width: 100%;
+    height: 100vh;
+    .logInLogo{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.headingContainer{
+    margin-top: 90px;
+}
