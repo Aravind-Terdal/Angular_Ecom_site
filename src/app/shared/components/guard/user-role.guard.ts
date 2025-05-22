@@ -22,8 +22,10 @@ export class UserRoleGuard implements CanActivate {
     | boolean
     | UrlTree {
     let userRole = this._signUpAuth.getUserRole();
-    let UserArray = route.data['userRole'];
-    if (UserArray.incudes(userRole)) {
+    let UserArray = route.data['userRole']!;
+    console.log(UserArray);
+
+    if (UserArray.includes(userRole)) {
       return true;
     } else {
       return false;

@@ -10,12 +10,12 @@
   </div>
   <div class="col-md-4 offset-md-1">
     <div class="headingContainer">
-      <h1>{{ alreadyHaveAnAccount ? "Sign Up" : "Log in" }}</h1>
+      <h1>{{ alreadyHaveAnAccount ? "Log in" : "Sign Up" }}</h1>
       <p>Enter your details below</p>
     </div>
     <div class="card">
       <div class="card-body">
-        <ng-container *ngIf="alreadyHaveAnAccount">
+        <ng-container *ngIf="!alreadyHaveAnAccount">
           <form [formGroup]="signUpForm" (ngSubmit)="onRegister()">
             <div class="form-group">
               <label for="email">Email</label>
@@ -69,7 +69,7 @@
           </form>
         </ng-container>
         <!-- log-in Form -->
-        <ng-container *ngIf="!alreadyHaveAnAccount">
+        <ng-container *ngIf="alreadyHaveAnAccount">
           <form [formGroup]="logInForm" (ngSubmit)="onLogIn()">
             <div class="form-group">
               <label for="email">Email</label>
@@ -101,14 +101,14 @@
         <div class="text-danger">
           {{
             alreadyHaveAnAccount
-              ? "Have already account"
-              : "Dont't have an account"
+              ? "Dont't have an account"
+              : "Have already account"
           }}
           <a
             (click)="alreadyHaveAnAccount = !alreadyHaveAnAccount"
             href="javascript:;"
             class="btn btn-link"
-            >{{ alreadyHaveAnAccount ? "Log In" : "Sign Up" }}
+            >{{ alreadyHaveAnAccount ? "Sign Up" : "Log In" }}
           </a>
         </div>
       </div>

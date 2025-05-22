@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SignUpAuthService } from '../../services/sign-up-auth.service';
 import { SnackbarService } from '../../services/snackbar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,8 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private _signUpAuthService: SignUpAuthService,
-    private _snackBar: SnackbarService
+    private _snackBar: SnackbarService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +65,8 @@ export class SignupComponent implements OnInit {
         next: (res) => {
           this._snackBar.openSnackBar(res.message);
           this._signUpAuthService.saveToken(res.token);
+          this._signUpAuthService.saveUserRole(res.userRole);
+          this._router.navigate(['/home']);
           this.logInForm.reset();
         },
         error: (err) => {
