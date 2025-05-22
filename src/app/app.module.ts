@@ -13,6 +13,7 @@ import { SignupComponent } from './shared/components/signup/signup.component';
 import { MaterialModule } from './shared/modules/materials';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CarouselComponent } from './shared/components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     ContactComponent,
     AboutComponent,
     SignupComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
