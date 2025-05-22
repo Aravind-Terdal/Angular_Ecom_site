@@ -12,6 +12,7 @@ import { AboutComponent } from './shared/components/about/about.component';
 import { SignupComponent } from './shared/components/signup/signup.component';
 import { MaterialModule } from './shared/modules/materials';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

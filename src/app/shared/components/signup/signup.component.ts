@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SignUpAuthService } from '../../services/sign-up-auth.service';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,10 +12,15 @@ export class SignupComponent implements OnInit {
   signUpForm!: FormGroup;
   logInForm!: FormGroup;
   alreadyHaveAnAccount: boolean = false;
-  constructor() {}
+
+  constructor(
+    private _signUpAuthService: SignUpAuthService,
+    private _snackBar: SnackbarService
+  ) {}
 
   ngOnInit(): void {
     this.createSignUpForm();
+    this.createLogInForm();
   }
 
   createSignUpForm() {
@@ -26,8 +33,42 @@ export class SignupComponent implements OnInit {
 
   createLogInForm() {
     this.logInForm = new FormGroup({
-      email: new FormControl([null, Validators.required]),
-      password: new FormControl([null, Validators.required]),
+      email: new FormControl(null, [Validators.required]),
+      password: new FormControl(null, [Validators.required]),
     });
+  }
+
+  onRegister() {
+    if (this.signUpForm.valid) {
+      let user = this.signUpForm.value;
+      this._signUpAuthService.registerUser(user).subscribe({
+        next: (res) => {
+          console.log(res);
+
+          this._snackBar.openSnackBar(res.message);
+          this.signUpForm.reset();
+          this.alreadyHaveAnAccount = true;
+        },
+        error: (err) => {
+          this._snackBar.openSnackBar(err.error.message);
+        },
+      });
+    }
+  }
+
+  onLogIn() {
+    if (this.logInForm.valid) {
+      let user = this.logInForm.value;
+      this._signUpAuthService.logInUser(user).subscribe({
+        next: (res) => {
+          this._snackBar.openSnackBar(res.message);
+          this._signUpAuthService.saveToken(res.token);
+          this.logInForm.reset();
+        },
+        error: (err) => {
+          this._snackBar.openSnackBar(err.error.message);
+        },
+      });
+    }
   }
 }

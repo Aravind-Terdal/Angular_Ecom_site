@@ -9,16 +9,16 @@
   margin: 40px;
 }
 
-.imgcontainer{
+.imgcontainer {
+  width: 100%;
+  height: 100vh;
+  .logInLogo {
+    height: 100%;
     width: 100%;
-    height: 100vh;
-    .logInLogo{
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
+    object-fit: cover;
+  }
 }
 
-.headingContainer{
-    margin-top: 90px;
+.headingContainer {
+  margin-top: 90px;
 }

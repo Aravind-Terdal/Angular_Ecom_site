@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mb-10">
   <div class="col-md-7">
     <div class="imgcontainer">
       <img
@@ -10,13 +10,13 @@
   </div>
   <div class="col-md-4 offset-md-1">
     <div class="headingContainer">
-        <h1>{{ alreadyHaveAnAccount ? "Sign Up" : "Log in" }}</h1>
-        <p>Enter your details below</p>
+      <h1>{{ alreadyHaveAnAccount ? "Sign Up" : "Log in" }}</h1>
+      <p>Enter your details below</p>
     </div>
     <div class="card">
       <div class="card-body">
         <ng-container *ngIf="alreadyHaveAnAccount">
-          <form [formGroup]="signUpForm">
+          <form [formGroup]="signUpForm" (ngSubmit)="onRegister()">
             <div class="form-group">
               <label for="email">Email</label>
               <input
@@ -70,7 +70,7 @@
         </ng-container>
         <!-- log-in Form -->
         <ng-container *ngIf="!alreadyHaveAnAccount">
-          <form [formGroup]="signUpForm">
+          <form [formGroup]="logInForm" (ngSubmit)="onLogIn()">
             <div class="form-group">
               <label for="email">Email</label>
               <input
